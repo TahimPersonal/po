@@ -6,8 +6,8 @@ from telegram import Bot
 from telegram.error import TelegramError
 
 # Replace with your Telegram bot token and channel ID
-API_TOKEN = 'your-telegram-bot-token'
-CHANNEL_ID = '@your_channel_id'
+API_TOKEN = '7843096547:AAHzkh6gwbeYzUrwQmNlskzft6ZayCRKgNU'
+CHANNEL_ID = '-1002440398569'
 
 # The URL of the RSS feed
 RSS_URL = 'https://www.1tamilmv.pm/discover/all.php'
