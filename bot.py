@@ -4,6 +4,10 @@ import feedparser
 from bs4 import BeautifulSoup
 from telegram import Bot
 from telegram.error import TelegramError
+from flask import Flask
+
+# Initialize Flask app
+app = Flask(__name__)
 
 # Replace with your Telegram bot token and channel ID
 API_TOKEN = '7843096547:AAHzkh6gwbeYzUrwQmNlskzft6ZayCRKgNU'
@@ -90,6 +94,11 @@ def process_rss_feed():
                 print(f"Sent old post: {post_url}")
                 time.sleep(300)  # Delay of 5 minutes between posts
 
+# Flask route for health check
+@app.route('/health', methods=['GET'])
+def health_check():
+    return "OK", 200
+
 # Main function to run the bot
 def main():
     print("Bot started...")
@@ -98,5 +107,10 @@ def main():
         print("Waiting for 10 minutes to check for new posts...")
         time.sleep(600)  # Wait for 10 minutes before checking the feed again
 
+# Run the Flask server
 if __name__ == "__main__":
+    # Run the Flask health check server in a separate thread or process
+    from threading import Thread
+    health_thread = Thread(target=lambda: app.run(host='0.0.0.0', port=5000))
+    health_thread.start()
     main()
