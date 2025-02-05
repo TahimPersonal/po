@@ -10,9 +10,8 @@ COPY . /app
 # Install the required dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Expose a port (since it is not directly interacting with a web server, port selection doesn't matter much)
-# We are just running the bot and not serving anything over HTTP
-EXPOSE 8080
+# Expose a port for the Flask server (health check)
+EXPOSE 5000
 
 # Run the bot when the container starts
 CMD ["python", "bot.py"]
